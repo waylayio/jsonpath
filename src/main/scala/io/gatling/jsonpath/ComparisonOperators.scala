@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2019 GatlingCorp (https://gatling.io)
+ * Copyright 2011-2020 GatlingCorp (https://gatling.io)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -42,7 +42,7 @@ sealed trait ComparisonWithOrderingOperator extends ComparisonOperator {
                   case NumberType.INT         => compare(lhs.intValue, rhs.intValue)
                   case NumberType.LONG        => compare(lhs.intValue, rhs.longValue)
                   case NumberType.DOUBLE      => compare(lhs.intValue, rhs.doubleValue)
-                  case NumberType.FLOAT       => compare(lhs.intValue, rhs.floatValue)
+                  case NumberType.FLOAT       => compare(lhs.intValue.toFloat, rhs.floatValue)
                   case NumberType.BIG_INTEGER => compare(lhs.bigIntegerValue, rhs.bigIntegerValue)
                   case NumberType.BIG_DECIMAL => compare(lhs.decimalValue, rhs.decimalValue)
                 }
@@ -51,16 +51,16 @@ sealed trait ComparisonWithOrderingOperator extends ComparisonOperator {
                 rhs.numberType match {
                   case NumberType.INT         => compare(lhs.longValue, rhs.intValue)
                   case NumberType.LONG        => compare(lhs.longValue, rhs.longValue)
-                  case NumberType.DOUBLE      => compare(lhs.longValue, rhs.doubleValue)
-                  case NumberType.FLOAT       => compare(lhs.longValue, rhs.floatValue)
+                  case NumberType.DOUBLE      => compare(lhs.longValue.toDouble, rhs.doubleValue)
+                  case NumberType.FLOAT       => compare(lhs.longValue.toFloat, rhs.floatValue)
                   case NumberType.BIG_INTEGER => compare(lhs.bigIntegerValue, rhs.bigIntegerValue)
                   case NumberType.BIG_DECIMAL => compare(lhs.decimalValue, rhs.decimalValue)
                 }
 
               case NumberType.FLOAT =>
                 rhs.numberType match {
-                  case NumberType.INT         => compare(lhs.floatValue, rhs.intValue)
-                  case NumberType.LONG        => compare(lhs.floatValue, rhs.longValue)
+                  case NumberType.INT         => compare(lhs.floatValue, rhs.intValue.toFloat)
+                  case NumberType.LONG        => compare(lhs.floatValue, rhs.longValue.toFloat)
                   case NumberType.DOUBLE      => compare(lhs.floatValue, rhs.doubleValue)
                   case NumberType.FLOAT       => compare(lhs.floatValue, rhs.floatValue)
                   case NumberType.BIG_INTEGER => compare(lhs.decimalValue, rhs.decimalValue)
@@ -70,7 +70,7 @@ sealed trait ComparisonWithOrderingOperator extends ComparisonOperator {
               case NumberType.DOUBLE =>
                 rhs.numberType match {
                   case NumberType.INT         => compare(lhs.doubleValue, rhs.intValue)
-                  case NumberType.LONG        => compare(lhs.doubleValue, rhs.longValue)
+                  case NumberType.LONG        => compare(lhs.doubleValue, rhs.longValue.toDouble)
                   case NumberType.DOUBLE      => compare(lhs.doubleValue, rhs.doubleValue)
                   case NumberType.FLOAT       => compare(lhs.doubleValue, rhs.floatValue)
                   case NumberType.BIG_INTEGER => compare(lhs.decimalValue, rhs.decimalValue)

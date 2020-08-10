@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2019 GatlingCorp (https://gatling.io)
+ * Copyright 2011-2020 GatlingCorp (https://gatling.io)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,13 +19,10 @@ package io.gatling.jsonpath
 import com.fasterxml.jackson.databind.node.{ BooleanNode, DoubleNode, FloatNode, IntNode, LongNode, TextNode }
 import org.scalacheck.Arbitrary
 import org.scalacheck.Arbitrary.arbitrary
-import org.scalatest.prop.GeneratorDrivenPropertyChecks
 import org.scalatest.{ FlatSpec, Matchers }
+import org.scalatestplus.scalacheck.ScalaCheckDrivenPropertyChecks
 
-class ComparisonOperatorsSpec
-  extends FlatSpec
-  with Matchers
-  with GeneratorDrivenPropertyChecks {
+class ComparisonOperatorsSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropertyChecks {
 
   "comparison operators" should "return false if types aren't compatible" in {
     forAll(arbitrary[String], arbitrary[Int]) { (string, int) =>

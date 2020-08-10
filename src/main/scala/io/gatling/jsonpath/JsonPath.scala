@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2019 GatlingCorp (https://gatling.io)
+ * Copyright 2011-2020 GatlingCorp (https://gatling.io)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 
 package io.gatling.jsonpath
 
-import scala.collection.JavaConverters._
+import scala.jdk.CollectionConverters._
 import scala.math.abs
 import io.gatling.jsonpath.AST._
 import com.fasterxml.jackson.databind.JsonNode
@@ -34,7 +34,7 @@ object JsonPath {
     }
 
   def query(query: String, jsonObject: JsonNode): Either[JPError, Iterator[JsonNode]] =
-    compile(query).right.map(_.query(jsonObject))
+    compile(query).map(_.query(jsonObject))
 }
 
 class JsonPath(path: List[PathToken]) {
