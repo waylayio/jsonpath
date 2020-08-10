@@ -19,3 +19,13 @@ githubPath := "waylay/jsonpath"
 crossPaths := true
 scalaVersion := "2.13.3"
 
+
+resolvers += "Waylay repository" at "https://nexus.waylay.io/repository/maven-releases"
+publishTo := {
+  val nexus = "https://nexus.waylay.io"
+  if (isSnapshot.value)
+    Some("Waylay snapshot repo" at nexus + "/repository/maven-snapshots")
+  else
+    Some("Waylay releases repo" at nexus + "/repository/maven-releases")
+}
+
