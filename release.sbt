@@ -1,0 +1,1 @@
+releaseProcess := WaylayPlugin.releaseProcess
