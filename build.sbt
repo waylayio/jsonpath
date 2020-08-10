@@ -1,7 +1,7 @@
 import _root_.io.gatling.build.MavenPublishKeys._
 import _root_.io.gatling.build.license._
 
-enablePlugins(AutomateHeaderPlugin, SonatypeReleasePlugin)
+enablePlugins(AutomateHeaderPlugin,WaylayPlugin)
 
 projectDevelopers := Seq(
   GatlingDeveloper("slandelle@gatling.io", "Stéphane Landelle", isGatlingCorp = true),
